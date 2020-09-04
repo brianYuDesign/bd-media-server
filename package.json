@@ -4,14 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec babel-node init.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm-run-all clean transpile",
+    "server": "node dist",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --exec babel-node src/index",
+    "prod": "NODE_ENV=production npm-run-all build server",
+    "transpile": "babel ./src --out-dir dist",
+    "clean": "rimraf dist"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "node-media-server": "^2.2.2"
+    "node-media-server": "^2.2.2",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.11.6",
